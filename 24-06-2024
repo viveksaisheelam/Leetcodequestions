@@ -1,0 +1,48 @@
+
+#Leetcode daily question 
+q)991 MININUM K BIT FLIPS
+
+class Solution {
+    public int minKBitFlips(int[] nums, int k) {
+        int flipCount = 0; 
+        int prefix[]=new int[nums.length];
+        int ps=0;
+        for(int i=0;i<nums.length-k;i++){
+             if((nums[i]+ps+prefix[i])%2==0){
+                 if(i+k<nums.length){
+                    prefix[i+k]--;
+                 }
+                 prefix[i]++;
+                 flipCount++;
+                //  System.out.println(1);
+             }
+             else{
+                // System.out.println(0);
+             }
+            ps+=prefix[i];
+        }
+        // System.out.println(flipCount);
+        System.out.println();
+        int temp=0;
+        for(int i=nums.length-k;i<nums.length;i++){
+             if((nums[i]+ps+prefix[i])%2==0){
+                 temp++;
+             }
+             else{
+             }
+            ps+=prefix[i];
+        }
+        if(temp==0||temp==k){
+            if(temp==0){
+                return flipCount;
+            }
+            if(temp==k){
+                return flipCount+1;
+            }
+        }
+        else{
+            return -1;
+        }
+        return -1;
+    }
+}
