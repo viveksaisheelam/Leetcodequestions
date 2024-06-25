@@ -1,0 +1,28 @@
+Q)1038. Binary Search Tree to Greater Sum Tree
+
+
+Class Solution {
+    // int sum=0;
+    public TreeNode bstToGst(TreeNode root) {
+        // if(root==null){
+        //     return null;
+        // }
+        // bstToGst(root.right);
+        // int tempsum=sum;
+        // sum+=root.val;
+        // root.val+=tempsum;
+        // bstToGst(root.left);
+        togst(root,new int[1]);
+        return root;
+    }
+    public void togst(TreeNode root,int sum[]){
+        if(root==null){
+            return ;
+        }
+        togst(root.right,sum);
+        int tempsum=sum[0];
+        sum[0]+=root.val;
+        root.val+=tempsum;
+        togst(root.left,sum);
+    }
+}
